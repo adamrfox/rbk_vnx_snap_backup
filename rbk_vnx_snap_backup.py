@@ -67,7 +67,7 @@ if __name__ == "__main__":
     verbose = False
     DEBUG = False
 
-    optlist, args = getopt.getopt(sys.argv[1:], 'hvc:dD:', ['--help', '--verbose', '--creds=', '--data_mover=', ''--debug''])
+    optlist, args = getopt.getopt(sys.argv[1:], 'hvc:dD:', ['--help', '--verbose', '--creds=', '--data_mover=', '--debug'])
     for opt, a in optlist:
         if opt in ('-h', '--help'):
             usage()
