@@ -11,7 +11,15 @@ urllib3.disable_warnings()
 
 
 def usage():
-    print "Usage goes here!"
+    sys.stderr.write("Usage: rbk_vnx_snap_backup.py [-hvD] [-c creds] [-d data_mover] vnx filesystem path rubrik\n")
+    sys.stderr.write("-h | --help : Prints this message\n")
+    sys.stderr.write("-v | --verbose : Verbose mode, prints more messages\n")
+    sys.stderr.write("-c | --creds= : Use a file for credentials\n")
+    sys.stderr.write("-d | --data_mover= : Set the (virtual) data mover [default: server_2]\n")
+    sys.stderr.write("vnx : Hostname or IP of the Control Station of the VNX\n")
+    sys.stderr.write("share : Share name.  For NFS put the path starting the /, for SMB, put the share name.\n")
+    sys.stderr.write("path : Local path for the filesystem\n")
+    sys.stderr.write("rubrik : Hostname or IP of the Rubrik\n")
     exit(0)
 
 def vprint(message):
@@ -64,17 +72,20 @@ if __name__ == "__main__":
         if opt in ('-v', '--verbose'):
             verbose = True
         if opt in ('-c' '--creds'):
-            if ':' in a:
-                (user, password) = a.split(':')
-            else:
-                (user, password) = get_creds_from_file(a, 'rubrik')
-                (vnx_user, vnx_password) = get_creds_from_file(a, 'vnx')
+            (user, password) = get_creds_from_file(a, 'rubrik')
+            (vnx_user, vnx_password) = get_creds_from_file(a, 'vnx')
         if opt in ('d', '--data_mover'):
             dm = a
+    if args[0] == "?":
+        usage()
     if user == "":
         user = raw_input("User: ")
     if password == "":
         password = getpass.getpass("Password: ")
+    if vnx_user == "":
+        vnx_user = raw_input("VNX User: ")
+    if vnx_password == "":
+        vnx_password = getpass.getpass("VNX Password: ")
     (vnx_host, filesystem, path, rubrik_host) = args
     if filesystem.startswith("/"):
         share_type = "NFS"
