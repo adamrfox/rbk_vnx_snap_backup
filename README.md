@@ -23,7 +23,7 @@ Basic assumptions of the script today:
 4. It's possible to mount the filesysems thenselves (not the special ones for Rubrik) on the host running the script.
 
 Credentials:
-Credentials are needed for both the Rubrik as well as the VNX Control Station.  These can be entered either on the commmand line or they can be put into an obfuscated file using <a href="https://github.com/adamrfox/creds_encode>creds_encode</a>.  It's not really encrypted and you should still lock this file down as best you can but it's better than plaintext.  Suggestions for better ways to do this (2-way encoding) are welcome.  For the array type use 'rubrik' and 'vnx'.
+Credentials are needed for both the Rubrik as well as the VNX Control Station.  These can be entered either on the commmand line or they can be put into an obfuscated file using <a href="https://github.com/adamrfox/creds_encode">creds_encode</a>.  It's not really encrypted and you should still lock this file down as best you can but it's better than plaintext.  Suggestions for better ways to do this (2-way encoding) are welcome.  For the array type use 'rubrik' and 'vnx'.
 
 Here's the basic syntax:
 <pre>
